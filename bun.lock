@@ -15,7 +15,7 @@
     },
     "src/library": {
       "name": "postreq",
-      "version": "1.0.8",
+      "version": "1.0.10",
       "dependencies": {
         "@rollup/plugin-commonjs": "^28.0.6",
         "@rollup/plugin-node-resolve": "^16.0.1",
@@ -852,7 +852,7 @@
 
     "anymatch/picomatch": ["picomatch@2.3.1", "", {}, "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="],
 
-    "demo/postreq": ["postreq@1.0.8", "", { "dependencies": { "@rollup/plugin-commonjs": "^28.0.6", "@rollup/plugin-node-resolve": "^16.0.1", "@rollup/plugin-typescript": "^12.1.4", "rollup": "^4.48.1", "rollup-plugin-terser": "^7.0.2" }, "peerDependencies": { "typescript": "^5" } }, "sha512-xeTw0Ga3ODWo2B3NLOHBta9fBhaUfvZIP4p+YXferPbZPHTQuJGuWkqUovWCnM0xG+A0/yMoLjG/Cd4NF0cDxg=="],
+    "demo/postreq": ["postreq@1.0.10", "", { "dependencies": { "@rollup/plugin-commonjs": "^28.0.6", "@rollup/plugin-node-resolve": "^16.0.1", "@rollup/plugin-typescript": "^12.1.4", "rollup": "^4.48.1", "rollup-plugin-terser": "^7.0.2" }, "peerDependencies": { "typescript": "^5" } }, "sha512-1xcEyxbmnvgFJ2L0FoMTuVEQlwZj2kiOd1iFdATOMhFJAem7kOI7hDzowuwIlxNIAedGrbQPYE6McsiWTQXF2g=="],
 
     "hast-util-to-parse5/property-information": ["property-information@6.5.0", "", {}, "sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig=="],
 
