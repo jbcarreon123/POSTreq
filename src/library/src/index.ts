@@ -28,7 +28,7 @@ export class POSTreq {
             url,
             req
         }
-        this._iframe.contentWindow?.postMessage(obj);
+        this._iframe.contentWindow?.postMessage(obj, this._url || "http://postreq.jbc.lol/postreq");
         const res = await this.onMessage();
         return res.data;
     }
