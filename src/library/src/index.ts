@@ -20,7 +20,7 @@ export class POSTreq {
         // @ts-ignore
         return new Promise(resolve => window.onmessage = (e: MessageEvent<MessageResponse>) => {
             if (!e.data.postreq) {
-                console.log(e.data);
+                console.log(e.data, e.data.postreq);
                 return;
             }
             return resolve(e)

@@ -54,14 +54,16 @@ export class POSTreq_Iframe {
                     text,
                     ok: res.ok
                 };
-                console.log(payload);
                 if (p) p.textContent = JSON.stringify(payload);
-                evt.source?.postMessage(payload);
+                //@ts-ignore
+                evt.source?.postMessage(payload, evt.origin);
             } catch (e) {
                 console.log(e);
+                
                 evt.source?.postMessage({
                     error: e
-                });
+                //@ts-ignore
+                }, evt.origin);
             }
         })
     }
