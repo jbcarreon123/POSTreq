@@ -1,8 +1,8 @@
-import type { MessageRequest } from "./shared";
+import type { MessageRequest } from "./shared.js";
 
 export class POSTreq_Iframe {
     constructor() {
-        console.log(document);
+        console.log('POSTreq loaded. https://postreq.jbc.lol/');
         window.addEventListener('message', async (e) => {
             if (!e.data.url) return;
             const evt = e as MessageEvent<MessageRequest>;

@@ -1,24 +1,12 @@
 ---
 import Main from "../layouts/Main.astro";
-import Instructions from "../utils/instructions.md";
+import Readme from "../../README.md";
 ---
 
 <Main>
 	<main>
 		<div>
-			<h1 class="big">POSTreq</h1>
-			<p>
-				POSTreq (abbr. POST request, acrn. <b>post</b>Message Fetch <b
-					>Request</b
-				>) is a minimal JavaScript library that works around Neocities'
-				Content Security Policy limitations on free accounts by wrapping
-				the Fetch API into an iframe.
-			</p>
-			<p>
-				Note that POSTreq is still in beta and you might discover some bugs!
-			</p>
-
-			<Instructions />
+			<Readme />
 		</div>
 
 		<div class="right">
@@ -128,48 +116,4 @@ import Instructions from "../utils/instructions.md";
 			});
 		});
 	</script>
-
-	<style scoped>
-		.ft {
-			display: flex;
-			justify-content: space-between;
-			padding-top: 6px;
-			align-items: end;
-
-			.btn {
-				display: flex;
-				gap: 6px;
-			}
-		}
-
-		main {
-			display: flex;
-			gap: 12px;
-		}
-
-		h1.big {
-			font-size: 3em;
-		}
-
-		.right {
-			min-width: 500px;
-			max-width: 500px;
-		}
-
-		.form-res {
-			display: flex;
-			flex-direction: column;
-			max-width: 100%;
-			overflow: hidden;
-		}
-
-		footer {
-			margin-top: 24px;
-		}
-
-		pre {
-			max-width: 100%;
-			overflow: auto;
-		}
-	</style>
 </Main>

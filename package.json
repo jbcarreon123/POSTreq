@@ -3,6 +3,6 @@
   "description": "Send API requests on certain strict environments using iframes",
   "private": true,
   "workspaces": [
-    "lib/*"
+    "src/*"
   ]
 }

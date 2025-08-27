@@ -1,0 +1,19 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "baseUrl": ".",
+  "paths": {
+    "postreq": [
+      "../library/dist/index.js"
+    ],
+    "postreq/*": [
+      "../library/dist/*"
+    ]
+  }
+}

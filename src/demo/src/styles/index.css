@@ -1,0 +1,153 @@
+:root {
+  --jcolor-bg: #212529;
+  --jcolor-altbg: #1d1f20;
+  --jcolor-acc: #343a40;
+  --jcolor-text: #f1f3f5;
+  --jcolor-sec: #ced4da;
+  --jcolor-link: #30b8e6;
+  --jcolor-link-hover: #4dc4eb;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --jcolor-bg: #ffffff;
+    --jcolor-altbg: #f8f9fa;
+    --jcolor-acc: #e9ecef;
+    --jcolor-text: #212529;
+    --jcolor-sec: #495057;
+    --jcolor-link: #6a6d73;
+    --jcolor-link-hover: #83868b;
+  }
+}
+
+.http-status-1xx {
+  color: #64b5f6;
+}
+
+.http-status-2xx {
+  color: #66bb6a;
+}
+
+.http-status-3xx {
+  color: #ffca28;
+}
+
+.http-status-4xx {
+  color: #ef5350;
+}
+
+.http-status-401 {
+  color: #ef5350;
+}
+
+.http-status-404 {
+  color: #ef5350;
+}
+
+.http-status-5xx {
+  color: #ba68c8;
+}
+
+.http-status-500 {
+  color: #ba68c8;
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--jcolor-text);
+  margin: 0;
+}
+
+body {
+  background-color: var(--jcolor-altbg);
+  color: var(--jcolor-text);
+  margin: 24px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.ft {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 6px;
+  align-items: end;
+
+  .btn {
+    display: flex;
+    gap: 6px;
+  }
+}
+
+main {
+  display: flex;
+  gap: 12px;
+}
+
+h1.big {
+  font-size: 3em;
+}
+
+.right {
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.form-res {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+footer {
+  margin-top: 24px;
+}
+
+pre {
+  max-width: 100%;
+  overflow: auto;
+}
+
+form>* {
+  border: 0;
+  padding: 5px;
+  background-color: var(--jcolor-bg);
+
+  &:hover {
+    background-color: var(--jcolor-acc);
+  }
+}
+
+form {
+  display: flex;
+  padding-block: 6px;
+  gap: 3px;
+}
+
+form input {
+  width: 100%;
+}
+
+.form-res .top {
+  padding: 6px;
+  background-color: var(--jcolor-acc);
+}
+
+a {
+  color: var(--jcolor-link);
+}
+
+a:hover {
+  color: var(--jcolor-link-hover)
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-bottom: 0.3em;
+}
+
+p {
+  margin-top: 0.3em;
+}

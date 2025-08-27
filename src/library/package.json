@@ -1,0 +1,48 @@
+{
+  "name": "postreq",
+  "version": "1.0.0",
+  "description": "POSTreq is a minimal JavaScript library that works around Neocities' Content Security Policy limitations on free accounts by wrapping the Fetch API into an iframe.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "bun run build",
+    "prebuild": "rm -rf dist"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/postreq.js"
+    }
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "files": [
+    "./dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbcarreon123/POSTreq.git"
+  },
+  "keywords": [
+    "neocities",
+    "postreq",
+    "fetch",
+    "iframe"
+  ],
+  "author": "Jb Carreon <jb@jbc.lol>",
+  "license": "MIT",
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "rollup": "^4.48.1",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

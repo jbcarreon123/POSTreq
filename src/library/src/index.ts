@@ -1,13 +1,12 @@
-import { POSTreq_Iframe } from "./iframe";
-import type { MessageRequest, MessageResponse } from "./shared";
-export { POSTreq_Iframe } from "./iframe";
+import type { MessageRequest, MessageResponse } from "./shared.js";
+export { POSTreq_Iframe } from './iframe.js';
 
 export class POSTreq {
     _iframe: HTMLIFrameElement;
     _url?: string;
 
     constructor(params?: {style?: string, url?: string, parentElement?: HTMLElement}) {
-        this._url = params?.url || "http://localhost:4321/postreq"; 
+        this._url = params?.url || "https://postreq.jbc.lol/postreq"; 
         this._iframe = document.createElement('iframe');
         if (!params?.style) this._iframe.style.display = "none";
         else this._iframe.style = params?.style;
@@ -34,8 +33,3 @@ export class POSTreq {
         return res.data;
     }
 }
-
-//@ts-ignore
-window.POSTreq = POSTreq;
-//@ts-ignore
-window.POSTreq_Iframe = POSTreq_Iframe;
