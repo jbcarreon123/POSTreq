@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Inter;
+  src: url(/Inter-Variable.ttf);
+}
+
 :root {
   --jcolor-bg: #212529;
   --jcolor-altbg: #1d1f20;
@@ -59,6 +64,7 @@
 }
 
 body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--jcolor-altbg);
   color: var(--jcolor-text);
   margin: 24px;
