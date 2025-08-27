@@ -6,7 +6,7 @@ export class POSTreq {
     _url?: string;
 
     constructor(params?: {style?: string, url?: string, parentElement?: HTMLElement}) {
-        this._url = params?.url || "https://postreq.jbc.lol/postreq"; 
+        this._url = params?.url || "http://localhost:4321/postreq"; 
         this._iframe = document.createElement('iframe');
         if (!params?.style) this._iframe.style.display = "none";
         else this._iframe.style = params?.style;

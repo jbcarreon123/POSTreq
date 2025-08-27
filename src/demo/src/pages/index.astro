@@ -103,15 +103,17 @@ import Readme from "../../../../README.md";
 					result?.text;
 				document.querySelector(".top .str").innerHTML =
 					`<span class="${getHttpStatusClass(result?.status)}">${result?.status} ${result?.statusText}</span> - ${url}`;
-				const keys = Object.keys(result?.headers);
-				let t = document.querySelector("#headers-container table");
-				t.innerHTML = "<tr><th>Name</th><th>Value</th></tr>";
-				keys.forEach((val) => {
-					t?.insertAdjacentHTML(
-						"beforeend",
-						`<tr><td>${val}</td><td>${result?.headers[val]}</td></tr>`,
-					);
-				});
+				try {
+					const keys = Object.keys(result?.headers);
+					let t = document.querySelector("#headers-container table");
+					t.innerHTML = "<tr><th>Name</th><th>Value</th></tr>";
+					keys.forEach((val) => {
+						t?.insertAdjacentHTML(
+							"beforeend",
+							`<tr><td>${val}</td><td>${result?.headers[val]}</td></tr>`,
+						);
+					});
+				} catch {}
 				document.querySelector(".form-res").style.display = "flex";
 			});
 		});
