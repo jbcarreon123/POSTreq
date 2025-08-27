@@ -6,7 +6,7 @@ export class POSTreq {
     _url?: string;
 
     constructor(params?: {style?: string, url?: string, parentElement?: HTMLElement}) {
-        this._url = params?.url || "http://postreq.jbc.lol/postreq"; 
+        this._url = params?.url || "https://postreq.jbc.lol/postreq"; 
         this._iframe = document.createElement('iframe');
         if (!params?.style) this._iframe.style.display = "none";
         else this._iframe.style = params?.style;
@@ -28,7 +28,7 @@ export class POSTreq {
             url,
             req
         }
-        this._iframe.contentWindow?.postMessage(obj, this._url || "http://postreq.jbc.lol/postreq");
+        this._iframe.contentWindow?.postMessage(obj, this._url || "https://postreq.jbc.lol/postreq");
         const res = await this.onMessage();
         return res.data;
     }
