@@ -162,7 +162,7 @@ p {
   margin-top: 0.3em;
 }
 
-@media screen and (width <= 640px) {
+@media screen and (width <= 900px) {
   body {
     padding-inline: 24px;
   }
