@@ -9,13 +9,13 @@ export default [
     output: [
       {
         file: 'dist/postreq.js',
-        format: 'umd',
+        format: 'iife',
         name: 'POSTreq',
         sourcemap: true,
       },
       {
         file: 'dist/postreq.min.js',
-        format: 'umd',
+        format: 'iife',
         name: 'POSTreq',
         sourcemap: true,
         plugins: [terser()],
