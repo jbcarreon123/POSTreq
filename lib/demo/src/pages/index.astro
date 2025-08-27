@@ -1,0 +1,175 @@
+---
+import Main from "../layouts/Main.astro";
+import Instructions from "../utils/instructions.md";
+---
+
+<Main>
+	<main>
+		<div>
+			<h1 class="big">POSTreq</h1>
+			<p>
+				POSTreq (abbr. POST request, acrn. <b>post</b>Message Fetch <b
+					>Request</b
+				>) is a minimal JavaScript library that works around Neocities'
+				Content Security Policy limitations on free accounts by wrapping
+				the Fetch API into an iframe.
+			</p>
+			<p>
+				Note that POSTreq is still in beta and you might discover some bugs!
+			</p>
+
+			<Instructions />
+		</div>
+
+		<div class="right">
+			<h1>Test it here!</h1>
+			<div class="iframe-internal"></div>
+			<form id="form">
+				<select id="method">
+					<option value="get">GET</option>
+					<option value="post">POST</option>
+					<option value="patch">PATCH</option>
+					<option value="delete">DELETE</option>
+					<option value="put">PUT</option>
+				</select>
+				<input type="url" id="url" value="https://gh.jbc.lol/" />
+				<button type="submit">Submit</button>
+			</form>
+			<div class="form-res" style="display: none;">
+				<div class="top">
+					<p class="str">
+						<span class="http-status-2xx">200 OK</span>
+						- https://gh.jbc.lol
+					</p>
+				</div>
+				<div class="res">
+					<code>
+						<pre class="data"></pre>
+					</code>
+				</div>
+				<div id="headers-container">
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Value</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<hr />
+		<div class="ft">
+			<div>
+				<p>
+					&copy; jbcarreon123 @ <a href="https://jbc.lol">jbc.lol</a>.
+					Licensed under MIT License.
+				</p>
+				<p>See source code -- Follow on Neocities</p>
+			</div>
+			<div class="btn">
+				<img src="/neocities.png" height="31" />
+				<img src="/sitebutton3.png" width="88" height="31" />
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		import { POSTreq } from "postreq";
+
+		function getHttpStatusClass(status: number) {
+			if (status >= 100 && status < 200) {
+				return "http-status-1xx";
+			} else if (status >= 200 && status < 300) {
+				return "http-status-2xx";
+			} else if (status >= 300 && status < 400) {
+				return "http-status-3xx";
+			} else if (status >= 400 && status < 500) {
+				return "http-status-4xx";
+			} else if (status >= 500 && status < 600) {
+				return "http-status-5xx";
+			} else {
+				return "";
+			}
+		}
+		document.addEventListener("DOMContentLoaded", () => {
+			const pEl = document.querySelector(".iframe-internal");
+			const postreq = new POSTreq({
+				style: "width: 100%;",
+				parentElement: pEl,
+			});
+			//@ts-ignore
+			window.postreq = postreq;
+
+			const form = document.querySelector("form#form");
+			form?.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				document.querySelector(".form-res").style.display = "none";
+				const url = form.querySelector("#url").value;
+				const method = form.querySelector("#method").value;
+				const result = await postreq.fetch(url, { method: method });
+
+				document.querySelector(".res code pre").textContent =
+					result?.text;
+				document.querySelector(".top .str").innerHTML =
+					`<span class="${getHttpStatusClass(result?.status)}">${result?.status} ${result?.statusText}</span> - ${url}`;
+				const keys = Object.keys(result?.headers);
+				let t = document.querySelector("#headers-container table");
+				t.innerHTML = "<tr><th>Name</th><th>Value</th></tr>";
+				keys.forEach((val) => {
+					t?.insertAdjacentHTML(
+						"beforeend",
+						`<tr><td>${val}</td><td>${result?.headers[val]}</td></tr>`,
+					);
+				});
+				document.querySelector(".form-res").style.display = "flex";
+			});
+		});
+	</script>
+
+	<style scoped>
+		.ft {
+			display: flex;
+			justify-content: space-between;
+			padding-top: 6px;
+			align-items: end;
+
+			.btn {
+				display: flex;
+				gap: 6px;
+			}
+		}
+
+		main {
+			display: flex;
+			gap: 12px;
+		}
+
+		h1.big {
+			font-size: 3em;
+		}
+
+		.right {
+			min-width: 500px;
+			max-width: 500px;
+		}
+
+		.form-res {
+			display: flex;
+			flex-direction: column;
+			max-width: 100%;
+			overflow: hidden;
+		}
+
+		footer {
+			margin-top: 24px;
+		}
+
+		pre {
+			max-width: 100%;
+			overflow: auto;
+		}
+	</style>
+</Main>
