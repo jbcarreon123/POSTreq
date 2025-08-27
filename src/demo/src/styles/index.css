@@ -87,6 +87,10 @@ body {
 main {
   display: flex;
   gap: 12px;
+
+  &>div {
+    overflow: hidden;
+  }
 }
 
 h1.big {
