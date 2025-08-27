@@ -161,3 +161,18 @@ p {
 p {
   margin-top: 0.3em;
 }
+
+@media screen and (width <= 640px) {
+  body {
+    padding-inline: 24px;
+  }
+
+  main {
+    flex-direction: column;
+
+    &>div {
+      width: 100%;
+      max-width: 100% !important;
+    }
+  }
+}
