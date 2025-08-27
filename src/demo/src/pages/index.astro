@@ -99,6 +99,7 @@ import Readme from "../../../../README.md";
 				const method = form.querySelector("#method").value;
 				const result = await postreq.fetch(url, { method: method });
 
+				console.log(result);
 				document.querySelector(".res code pre").textContent =
 					result?.text;
 				document.querySelector(".top .str").innerHTML =

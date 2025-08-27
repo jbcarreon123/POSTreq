@@ -4,6 +4,7 @@ export interface MessageRequest {
 }
 
 export interface MessageResponse {
+    postreq: boolean,
     status: number,
     statusText: number,
     headers: {},

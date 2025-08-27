@@ -43,6 +43,7 @@ export class POSTreq_Iframe {
                 } catch {}
 
                 const payload = {
+                    postreq: true,
                     status: res.status,
                     statusText: res.statusText,
                     headers: headers,
@@ -53,6 +54,7 @@ export class POSTreq_Iframe {
                     text,
                     ok: res.ok
                 };
+                console.log(payload);
                 if (p) p.textContent = JSON.stringify(payload);
                 evt.source?.postMessage(payload);
             } catch (e) {
