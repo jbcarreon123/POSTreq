@@ -30,8 +30,9 @@ jobs:
         uses: actions/setup-node@v4
       - name: Install dependencies
         run: bun install
-      - name: Update dependencies
-        run: bun update
+      - name: Link dependency
+        run: bun install --save ../library
+        working-directory: ./src/demo
       - name: Build demo pages
         run: npm run build
         working-directory: ./src/demo
