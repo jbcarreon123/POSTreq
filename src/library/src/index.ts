@@ -39,14 +39,14 @@ export class POSTreq {
 
     getPolyfill(): Function {
         const iframe = this._iframe;
-        const url = this._url;
+        const iurl = this._url;
         const onMessage = this.onMessage;
         return async function(url: string, req?: RequestInit): Promise<Response> {
             const obj: MessageRequest = {
                 url,
                 req
             }
-            iframe.contentWindow?.postMessage(obj, url || DEFAULT_URL);
+            iframe.contentWindow?.postMessage(obj, iurl || DEFAULT_URL);
             const res = await onMessage();
             return new Response(res.data);
         }
