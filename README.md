@@ -29,8 +29,10 @@ https://postrequest.neocities.org (alternate: https://postreq.jbc.lol)
     const pt = new POSTreq.POSTreq();
 
     // then you can now fetch stuff! Most of the Fetch API is supported.
-    const res = await pt.fetch('https://gh.jbc.lol/buttons.json');
-    const buttons = await res.json();
+    pt.onLoad = async () => {
+      const res = await pt.fetch('https://gh.jbc.lol/buttons.json');
+      const buttons = await res.json();
+    }
 
     // if you want to, you can replace the JS fetch to POSTreq!
     window.fetch = pt.getPolyfill()

@@ -55,14 +55,12 @@ export class POSTreq_Iframe {
                     ok: res.ok,
                     type: res.type,
                     redirected: res.redirected,
-                    url: res.url,
-                    
+                    url: data.url,
                 };
                 if (p) p.textContent = JSON.stringify(payload);
                 //@ts-ignore
                 evt.source?.postMessage(payload, evt.origin);
             } catch (e) {
-                console.log(e);
                 
                 evt.source?.postMessage({
                     error: e

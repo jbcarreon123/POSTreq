@@ -1,28 +1,33 @@
 import type { MessageRequest, MessageResponse } from "./shared.js";
 export { POSTreq_Iframe } from './iframe.js';
 
-const DEFAULT_URL = "https://postreq.jbc.lol/postreq";
+const DEFAULT_URL = "http://postreq.jbc.lol/postreq";
 
 export class POSTreq {
     _iframe: HTMLIFrameElement;
     _url?: string;
+    loaded: boolean = false;
+    currentlyFetching: boolean = false;
 
     onLoad!: Function;
 
     constructor(params?: { style?: string, url?: string, parentElement?: HTMLElement }) {
         this._url = params?.url || DEFAULT_URL;
         this._iframe = document.createElement('iframe');
+        this._iframe.addEventListener("load", () => {
+            this.loaded = true;
+            if (this.onLoad) this.onLoad();
+        })
         if (!params?.style) this._iframe.style.display = "none";
         else this._iframe.style = params?.style;
-        this._iframe.addEventListener('load', () => this.onLoad());
         this._iframe.src = this._url;
         (params?.parentElement ?? document.body).appendChild(this._iframe);
     }
 
-    private async onMessage(): Promise<MessageEvent<MessageResponse>> {
+    private async onMessage(url: string): Promise<MessageEvent<MessageResponse>> {
         // @ts-ignore
-        return new Promise(resolve => window.onmessage = (e: MessageEvent<MessageResponse>) => {
-            if (e.data.postreq) {
+        return new Promise(resolve => window.onmessage = (e: MessageEvent) => {
+            if (e.data.postreq && e.data.url === url) {
                 return resolve(e)
             } else if (e.data.error) {
                 throw e.data.error
@@ -31,12 +36,14 @@ export class POSTreq {
     }
 
     async fetch(url: string, req?: RequestInit): Promise<Response> {
+        this.currentlyFetching = true;
         const obj: MessageRequest = {
             url,
             req
         }
         this._iframe.contentWindow?.postMessage(obj, this._url || DEFAULT_URL);
-        const res = await this.onMessage();
+        const res = await this.onMessage(url);
+        this.currentlyFetching = false;
         return new Response(res.data);
     }
 
@@ -44,13 +51,13 @@ export class POSTreq {
         const iframe = this._iframe;
         const iurl = this._url;
         const onMessage = this.onMessage;
-        return async function(url: string, req?: RequestInit): Promise<Response> {
+        return async function (url: string, req?: RequestInit): Promise<Response> {
             const obj: MessageRequest = {
                 url,
                 req
             }
             iframe.contentWindow?.postMessage(obj, iurl || DEFAULT_URL);
-            const res = await onMessage();
+            const res = await onMessage(url);
             return new Response(res.data);
         }
     }
