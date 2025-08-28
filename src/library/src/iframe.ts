@@ -52,7 +52,11 @@ export class POSTreq_Iframe {
                     formData,
                     blob,
                     text,
-                    ok: res.ok
+                    ok: res.ok,
+                    type: res.type,
+                    redirected: res.redirected,
+                    url: res.url,
+                    
                 };
                 if (p) p.textContent = JSON.stringify(payload);
                 //@ts-ignore

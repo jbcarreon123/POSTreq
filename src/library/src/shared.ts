@@ -6,12 +6,16 @@ export interface MessageRequest {
 export interface MessageResponse {
     postreq: boolean,
     status: number,
-    statusText: number,
-    headers: {},
+    statusText: string,
+    headers: { [key: string]: string },
     json?: string,
     blob?: Blob,
     formData?: FormData,
+    arrayBuffer?: ArrayBuffer,
     text?: string,
     ok: boolean,
-    error?: Error
+    error?: Error,
+    type: string,
+    redirected: boolean,
+    url: string
 }

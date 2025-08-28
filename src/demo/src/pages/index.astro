@@ -101,17 +101,17 @@ import Readme from "../../../../README.md";
 
 				console.log(result);
 				document.querySelector(".res code pre").textContent =
-					result?.text;
+					await result.text();
 				document.querySelector(".top .str").innerHTML =
-					`<span class="${getHttpStatusClass(result?.status)}">${result?.status} ${result?.statusText}</span> - ${url}`;
+					`<span class="${getHttpStatusClass(result?.status)}">${result?.status} ${result?.statusText}</span> - ${result.url}`;
 				try {
-					const keys = Object.keys(result?.headers);
+					const keys = result.headers.entries();
 					let t = document.querySelector("#headers-container table");
 					t.innerHTML = "<tr><th>Name</th><th>Value</th></tr>";
 					keys.forEach((val) => {
 						t?.insertAdjacentHTML(
 							"beforeend",
-							`<tr><td>${val}</td><td>${result?.headers[val]}</td></tr>`,
+							`<tr><td>${val[0]}</td><td>${val[1]}</td></tr>`,
 						);
 					});
 				} catch {}
