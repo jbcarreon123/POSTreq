@@ -19,11 +19,11 @@ export class POSTreq {
     private async onMessage(): Promise<MessageEvent<MessageResponse>> {
         // @ts-ignore
         return new Promise(resolve => window.onmessage = (e: MessageEvent<MessageResponse>) => {
-            if (!e.data.postreq) {
-                console.log(e.data, e.data.postreq);
-                return;
+            if (e.data.postreq) {
+                return resolve(e)
+            } else if (e.data.error) {
+                throw e.data.error
             }
-            return resolve(e)
         });
     }
 
