@@ -7,11 +7,14 @@ export class POSTreq {
     _iframe: HTMLIFrameElement;
     _url?: string;
 
+    onLoad!: Function;
+
     constructor(params?: { style?: string, url?: string, parentElement?: HTMLElement }) {
         this._url = params?.url || DEFAULT_URL;
         this._iframe = document.createElement('iframe');
         if (!params?.style) this._iframe.style.display = "none";
         else this._iframe.style = params?.style;
+        this._iframe.addEventListener('load', () => this.onLoad());
         this._iframe.src = this._url;
         (params?.parentElement ?? document.body).appendChild(this._iframe);
     }
