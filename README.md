@@ -30,8 +30,13 @@ https://postrequest.neocities.org (alternate: https://postreq.jbc.lol)
 
     // then you can now fetch stuff! Most of the Fetch API is supported.
     const res = await pt.fetch('https://gh.jbc.lol/buttons.json');
+    const buttons = await res.json();
+
+    // if you want to, you can replace the JS fetch to POSTreq!
+    window.fetch = pt.getPolyfill()
     ```
 
-## Difference than JS Fetch
+## Notes
 - Due to issues, POSTreq doesn't output the entire Response object.
-- But, unlike JS Fetch, you can immediately access the data using `text()`, `blob()`, `json()`, `formData()`, and `arrayBuffer()`!
+- But, unlike JS Fetch, you can immediately access the data using `text()`, `blob()`, `json()`, `formData()`, and `arrayBuffer()`! Note that these are still async objects.
+- POSTreq does not support response streaming and Keep-Alive.
