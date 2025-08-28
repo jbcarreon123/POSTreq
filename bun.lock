@@ -15,7 +15,7 @@
     },
     "src/library": {
       "name": "postreq",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "dependencies": {
         "@rollup/plugin-commonjs": "^28.0.6",
         "@rollup/plugin-node-resolve": "^16.0.1",
@@ -851,8 +851,6 @@
     "ansi-align/string-width": ["string-width@4.2.3", "", { "dependencies": { "emoji-regex": "^8.0.0", "is-fullwidth-code-point": "^3.0.0", "strip-ansi": "^6.0.1" } }, "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g=="],
 
     "anymatch/picomatch": ["picomatch@2.3.1", "", {}, "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="],
-
-    "demo/postreq": ["postreq@1.1.0", "", { "dependencies": { "@rollup/plugin-commonjs": "^28.0.6", "@rollup/plugin-node-resolve": "^16.0.1", "@rollup/plugin-typescript": "^12.1.4", "rollup": "^4.48.1", "rollup-plugin-terser": "^7.0.2" }, "peerDependencies": { "typescript": "^5" } }, "sha512-qDCsGgs8StvsI45A1Xs6PRkqKRt/oBly4xA16OmZMuXKYiyz8lyYeRnce1bMBwMmAnv8fXXjjOkGfYLEWw1AXA=="],
 
     "hast-util-to-parse5/property-information": ["property-information@6.5.0", "", {}, "sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig=="],
 
