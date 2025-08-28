@@ -1,7 +1,7 @@
 import type { MessageRequest, MessageResponse } from "./shared.js";
 export { POSTreq_Iframe } from './iframe.js';
 
-const DEFAULT_URL = "http://postreq.jbc.lol/postreq";
+const DEFAULT_URL = "https://postreq.jbc.lol/postreq";
 
 export class POSTreq {
     _iframe: HTMLIFrameElement;
