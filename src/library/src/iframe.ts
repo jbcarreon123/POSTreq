@@ -1,8 +1,8 @@
-import type { MessageRequest } from "./shared.js";
+import type { MessageRequest, MessageResponse } from "./shared.js";
 
 export class POSTreq_Iframe {
     constructor() {
-        console.log('POSTreq loaded.', window.location.href);
+        console.log('POSTreq loaded on iframe URL', window.location.href);
         window.addEventListener('message', async (e) => {
             if (!e.data.url) return;
             const evt = e as MessageEvent<MessageRequest>;
@@ -42,7 +42,8 @@ export class POSTreq_Iframe {
                     text = await res.clone().text()
                 } catch {}
 
-                const payload = {
+                const payload: MessageResponse = {
+                    requestId: data.requestId,
                     postreq: true,
                     status: res.status,
                     statusText: res.statusText,
@@ -61,9 +62,9 @@ export class POSTreq_Iframe {
                 //@ts-ignore
                 evt.source?.postMessage(payload, evt.origin);
             } catch (e) {
-                
                 evt.source?.postMessage({
-                    error: e
+                    error: e,
+                    requestId: evt.data.requestId
                 //@ts-ignore
                 }, evt.origin);
             }

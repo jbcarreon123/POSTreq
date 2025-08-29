@@ -1,6 +1,7 @@
 export interface MessageRequest {
     url: string,
-    req?: RequestInit
+    req?: RequestInit,
+    requestId: string
 }
 
 export interface MessageResponse {
@@ -17,5 +18,16 @@ export interface MessageResponse {
     error?: Error,
     type: string,
     redirected: boolean,
-    url: string
+    url: string,
+    requestId: string
+}
+
+export function random(length: number): string {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  for ( let i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }

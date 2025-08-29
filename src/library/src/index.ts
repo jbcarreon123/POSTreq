@@ -1,4 +1,4 @@
-import type { MessageRequest, MessageResponse } from "./shared.js";
+import { random, type MessageRequest, type MessageResponse } from "./shared.js";
 export { POSTreq_Iframe } from './iframe.js';
 
 const DEFAULT_URL = "https://postreq.jbc.lol/postreq";
@@ -21,28 +21,29 @@ export class POSTreq {
         if (!params?.style) this._iframe.style.display = "none";
         else this._iframe.style = params?.style;
         this._iframe.src = this._url;
-        (params?.parentElement ?? document.body).appendChild(this._iframe);
+        (params?.parentElement ?? document.body).appendChild(this._iframe)
     }
 
-    private async onMessage(url: string): Promise<MessageEvent<MessageResponse>> {
-        // @ts-ignore
-        return new Promise(resolve => window.onmessage = (e: MessageEvent) => {
-            if (e.data.postreq && e.data.url === url) {
-                return resolve(e)
-            } else if (e.data.error) {
-                throw e.data.error
-            }
+    private async onMessage(requestId: string): Promise<MessageEvent<MessageResponse>> {
+        return new Promise(resolve => {
+            window.addEventListener('message', (e) => {
+                if (e.data.error) throw e.data.error;
+                if (!e.data.postreq || !e.data.requestId) return;
+                if (e.data.requestId === requestId) resolve(e);
+            });
         });
     }
 
     async fetch(url: string, req?: RequestInit): Promise<Response> {
         this.currentlyFetching = true;
+        const requestId = random(12);
         const obj: MessageRequest = {
             url,
-            req
+            req,
+            requestId
         }
         this._iframe.contentWindow?.postMessage(obj, this._url || DEFAULT_URL);
-        const res = await this.onMessage(url);
+        const res = await this.onMessage(requestId);
         this.currentlyFetching = false;
         return new Response(res.data);
     }
@@ -52,12 +53,14 @@ export class POSTreq {
         const iurl = this._url;
         const onMessage = this.onMessage;
         return async function (url: string, req?: RequestInit): Promise<Response> {
+            const requestId = random(12);
             const obj: MessageRequest = {
                 url,
-                req
+                req,
+                requestId
             }
             iframe.contentWindow?.postMessage(obj, iurl || DEFAULT_URL);
-            const res = await onMessage(url);
+            const res = await onMessage(requestId);
             return new Response(res.data);
         }
     }
